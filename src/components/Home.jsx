@@ -1,68 +1,44 @@
-import {
-  TableCell,
-  TableContainer,
-  TableRow,
-  Table,
-  Paper,
-  TableHead,
-  TableBody,
-} from "@mui/material";
-import { styled } from "@mui/material/styles";
+import { CardContent, Typography, Card, Box } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { tableCellClasses } from "@mui/material/TableCell";
-
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-  },
-}));
-
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  "&:nth-of-type(odd)": {
-    backgroundColor: theme.palette.action.hover,
-  },
-  // hide last border
-  "&:last-child td, &:last-child th": {
-    border: 0,
-  },
-}));
 
 const Home = () => {
+  const makeCard = (row, index) => {
+    const card = (
+      <React.Fragment>
+        <CardContent>
+          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+            User ID: {row.userId}
+          </Typography>
+          <Typography variant="h5" component="div"></Typography>
+          <Typography sx={{ mb: 1.5 }} color="text.secondary">
+            Blog ID: {row.id}
+          </Typography>
+          <Typography variant="body2">
+            <b>{row.title}</b>
+            <br />
+            {row.body}
+          </Typography>
+        </CardContent>
+      </React.Fragment>
+    );
+
+    return (
+      <Box sx={{ minWidth: 275 }} key={index}>
+        <Card variant="outlined">{card}</Card>
+      </Box>
+    );
+  };
+
   var [value, setValue] = useState([]);
 
   useEffect(() => {
     axios.get("https://jsonplaceholder.typicode.com/posts").then((response) => {
-      setValue((value = response.data));
+      setValue(response.data);
     });
   });
 
-  return (
-    <div>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <StyledTableCell align="center">ID</StyledTableCell>
-              <StyledTableCell align="center">Title</StyledTableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {value.map((row, index) => (
-              <TableRow>
-                <TableCell align="center">{row.id}</TableCell>
-                <TableCell align="center">{row.title}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </div>
-  );
+  return <div id="card">{value.map((row, index) => makeCard(row, index))}</div>;
 };
 
 export default Home;

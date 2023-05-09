@@ -12,9 +12,9 @@ const NavBar = () => {
               variant="h6"
               component="div"
               sx={{ flexGrow: 10 }}
-              align="center"
+              align="left"
             >
-              BLOG PAGE
+              BLOG Me
             </Typography>
             <Button color="inherit" variant="contained">
               <Link to={"/"}>Home</Link>

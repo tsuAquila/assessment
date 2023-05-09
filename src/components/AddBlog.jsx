@@ -1,23 +1,33 @@
+import "./AddBlog.css";
 import { Button, TextField, Typography } from "@mui/material";
 import React from "react";
 
 const AddBlog = () => {
   return (
-    <div>
-      <br></br>
-      <br></br>
-      <br></br>
+    <div id="addBlog">
       <Typography variant="h3">ADD BLOG</Typography>
-      <br></br>
+      <br />
+      <br />
+      <br />
       <TextField id="outlined-basic" label="Blog Name" variant="outlined" />
-      <br></br>
-      <br></br>
-      <TextField id="outlined-basic" label="Description" variant="outlined" />
-      <br></br>
-      <br></br>
+      <br />
+      <br />
       <TextField id="outlined-basic" label="Author Name" variant="outlined" />
-      <br></br>
-      <br></br>
+      <br />
+      <br />
+      <TextField id="outlined-basic" label="Title" variant="outlined" />
+      <br />
+      <br />
+      <TextField
+        id="outlined-basic"
+        label="Description"
+        multiline
+        variant="outlined"
+      />
+      <br />
+      <br />
+      <br />
+      <br />
       <Button variant="contained">Submit</Button>
     </div>
   );
